@@ -3,4 +3,9 @@
     <string name="title_activity_maps">Map</string>
     <string name="driver_button_text">Водитель</string>
     <string name="passenger_button_text">Пассажир</string>
+    <string name="title_activity_passeger">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_driver">MainActivity</string>
 </resources>
