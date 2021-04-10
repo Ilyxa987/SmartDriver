@@ -5,8 +5,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity {
     Button enter_fr, registration_fr;
@@ -35,7 +37,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.add(R.id.fragment_container,enterFragment);
+                ft.replace(R.id.fragment_container,enterFragment);
                 ft.commit();
             }
         });
@@ -44,7 +46,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.add(R.id.fragment_container,registrationFragment);
+                ft.replace(R.id.fragment_container,registrationFragment);
                 ft.commit();
             }
         });

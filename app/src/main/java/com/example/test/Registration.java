@@ -19,7 +19,11 @@ public class Registration extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.registration,null);
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         registration_bt = view.findViewById(R.id.registration);
         login_reg = view.findViewById(R.id.login_reg);
         psw_reg = view.findViewById(R.id.psw_reg);
@@ -34,6 +38,6 @@ public class Registration extends Fragment {
                 startActivity(intent);
             }
         });
-        return view;
+        super.onViewCreated(view, savedInstanceState);
     }
 }

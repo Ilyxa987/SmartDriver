@@ -19,7 +19,12 @@ public class Enter extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_start,null);
+        View view = inflater.inflate(R.layout.activity_start,container);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         enter_bt = view.findViewById(R.id.enter_bt);
         login_ent = view.findViewById(R.id.login_ent);
@@ -32,7 +37,6 @@ public class Enter extends Fragment {
                 startActivity(intent);
             }
         });
-
-        return view;
+        super.onViewCreated(view, savedInstanceState);
     }
 }

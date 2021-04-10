@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".FirstActivity">
+    tools:context=".FirstActivity"
+    android:background="@color/black">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,12 +16,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"/>
+            android:text="Login"
+            android:textColor="@color/white"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Придумайте логин"
-            android:id="@+id/login_reg"/>
+            android:id="@+id/login_reg"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -31,12 +35,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"/>
+            android:text="Password"
+            android:textColor="@color/white"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Придумайте пароль"
-            android:id="@+id/psw_reg"/>
+            android:id="@+id/psw_reg"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,12 +54,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Имя"/>
+            android:text="Имя"
+            android:textColor="@color/white"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Введите ваше имя"
-            android:id="@+id/name"/>
+            android:id="@+id/name"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -63,12 +73,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Фамилия"/>
+            android:text="Фамилия"
+            android:textColor="@color/white"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Введите фамилию"
-            android:id="@+id/surname"/>
+            android:id="@+id/surname"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
     </LinearLayout>
 
 
@@ -80,12 +93,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Маршрут"/>
+            android:text="Маршрут"
+            android:textColor="@color/white"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Введите маршрут автобуса"
-            android:id="@+id/number_bus"/>
+            android:id="@+id/number_bus"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <Button
