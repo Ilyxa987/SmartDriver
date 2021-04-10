@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">Smart Driver</string>
     <string name="title_activity_maps">Map</string>
+    <string name="driver_button_text">Водитель</string>
+    <string name="passenger_button_text">Пассажир</string>
 </resources>
