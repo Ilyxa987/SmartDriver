@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BlendMode;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -47,6 +48,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return true;
     }
 
+    public boolean isGranted() {
+        return granted;
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -71,7 +76,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationListener listener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            showLocation(location);
+            if(location != null) {
+                mMap.addMarker(new MarkerOptions().position(myPlace).title("Number bus"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(myPlace));
+                showLocation(location);
+                Toast.makeText(MapsActivity.this, location.getLongitude() + " " + location.getLatitude(), Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(MapsActivity.this, "Местоположение не определено", Toast.LENGTH_LONG).show();
+            }
         }
 
         @Override
@@ -83,12 +95,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onProviderEnabled(String s) {
             if (granted || checkPermission())
-            showLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+                showLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+            Toast.makeText(MapsActivity.this, "Местоположение не определено", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onProviderDisabled(String s) {
-
+            Toast.makeText(MapsActivity.this, "Местоположение не определено", Toast.LENGTH_LONG).show();
         }
     };
 
@@ -97,6 +110,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         if (location.getProvider().equals(LocationManager.GPS_PROVIDER)) {
             this.location = location;
+            //показать!!!
+            Toast.makeText(this, location.getLongitude() + " " + location.getLatitude(), Toast.LENGTH_SHORT).show();
+            myPlace = new LatLng(location.getLatitude(), location.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(myPlace).title("Number bus"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(myPlace));
         }
     }
 
@@ -124,14 +142,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
+        LatLng irkutsk = new LatLng(52, 104);
+        mMap.addMarker(new MarkerOptions().position(irkutsk).title("Number bus"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(irkutsk));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (granted || checkPermission()) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 30, 5, listener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
             if (locationManager != null) {
                 location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 if (location != null) {
