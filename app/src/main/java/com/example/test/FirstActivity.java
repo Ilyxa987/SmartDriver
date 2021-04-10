@@ -39,7 +39,7 @@ public class FirstActivity extends AppCompatActivity {
         driverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FirstActivity.this, EnterActivity.class);
+                Intent intent = new Intent(FirstActivity.this, StartActivity.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +47,7 @@ public class FirstActivity extends AppCompatActivity {
         passengerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FirstActivity.this, PassegerActivity.class);
+                Intent intent = new Intent(FirstActivity.this, MapsActivity.class);
                 startActivity(intent);
             }
         });
