@@ -3,10 +3,13 @@ package com.example.test;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -16,6 +19,7 @@ public class FirstActivity extends AppCompatActivity {
     private boolean granted = false;
     private final int LOCATION_PERMISSION = 2364;
     Button driverButton, passengerButton;
+    LocationManager locationManager;
 
     private boolean checkPermission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -26,6 +30,27 @@ public class FirstActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION) {
+            granted = true;
+            if (grantResults.length > 0) {
+                for (int res : grantResults) {
+                    if (res != PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(this, "Access denied", Toast.LENGTH_SHORT).show();
+                        granted = false;
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Access denied", Toast.LENGTH_SHORT).show();
+                granted = false;
+            }
+        }
     }
 
     @Override
