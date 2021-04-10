@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Введите логин"
-        android:id="@+id/login"/>
+        android:id="@+id/login_ent"/>
 
     </LinearLayout>
 
@@ -39,14 +39,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Введите пароль"
-            android:id="@+id/password"/>
+            android:id="@+id/psw_ent" />
 
     </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Войти"/>
+        android:text="Войти"
+        android:id="@+id/enter_bt"/>
 
 
 </LinearLayout>

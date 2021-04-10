@@ -2,7 +2,10 @@ package com.example.test;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,5 +45,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng irkutsk = new LatLng(52, 104);
         mMap.addMarker(new MarkerOptions().position(irkutsk).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(irkutsk));
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
+        menu.findItem(R.id.item_profile).setIntent(new Intent(this, ProfileActivity.class));
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item) {
+        super.onOptionsItemSelected(item);
+        startActivity(item.getIntent());
+        return true;
     }
 }
