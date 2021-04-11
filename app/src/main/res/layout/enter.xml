@@ -3,51 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login: "/>
+    android:gravity="center"
+    android:background="@color/black">
 
         <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Введите логин"
-        android:id="@+id/login_ent"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
+            android:id="@+id/login_ent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password: "/>
+            android:hint="Введите логин"
+            android:textColor="@color/white"
+            android:textColorHint="#9AFFFFFF"/>
 
         <EditText
+            android:id="@+id/psw_ent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Введите пароль"
-            android:id="@+id/psw_ent" />
-
-    </LinearLayout>
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textColor="@color/white"
+            android:textColorHint="#9AFFFFFF"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Войти"
         android:id="@+id/enter_bt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Создатьновую учетную записть"
+        android:id="@+id/on_registration"
+        android:textColor="#4533AC"/>
 
 
 </LinearLayout>
