@@ -6,6 +6,13 @@
     android:gravity="center"
     android:background="@color/black">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Вход"
+        android:textColor="@color/purple_200"
+        android:textSize="40dp"/>
+
         <EditText
             android:id="@+id/login_ent"
             android:layout_width="wrap_content"
