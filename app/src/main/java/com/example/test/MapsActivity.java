@@ -21,6 +21,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -31,6 +32,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private final int LOCATION_PERMISSION = 4521;
     private boolean granted = false;
     LatLng myPlace;
+    MarkerOptions marker;
+    Marker myPlaceMarker;
 
 
     private boolean checkPermission() {
@@ -77,7 +80,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onLocationChanged(Location location) {
             if(location != null) {
-                mMap.addMarker(new MarkerOptions().position(myPlace).title("Number bus"));
+                myPlace = new LatLng(location.getLatitude(), location.getLongitude());
+                if (myPlaceMarker != null) {
+                    Toast.makeText(MapsActivity.this, "Удаление маркера", Toast.LENGTH_LONG).show();
+                    myPlaceMarker.remove();
+                }
+                marker = new MarkerOptions().position(myPlace).title("Number bus");
+                myPlaceMarker = mMap.addMarker(marker);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(myPlace));
                 showLocation(location);
                 Toast.makeText(MapsActivity.this, location.getLongitude() + " " + location.getLatitude(), Toast.LENGTH_LONG).show();
@@ -95,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onProviderEnabled(String s) {
             if (granted || checkPermission())
-                showLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+                showLocation(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
             Toast.makeText(MapsActivity.this, "Что-то работает", Toast.LENGTH_LONG).show();
         }
 
@@ -109,13 +118,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (location == null)
             return;
         Toast.makeText(this, "Локации нет", Toast.LENGTH_SHORT).show();
-        if (location.getProvider().equals(LocationManager.GPS_PROVIDER)) {
+        if (location.getProvider().equals(LocationManager.NETWORK_PROVIDER)) {
             this.location = location;
             //показать!!!
             Toast.makeText(this, location.getLongitude() + " " + location.getLatitude(), Toast.LENGTH_SHORT).show();
+            if (myPlaceMarker != null) {
+                Toast.makeText(MapsActivity.this, "Удаление маркера", Toast.LENGTH_LONG).show();
+                myPlaceMarker.remove();
+            }
             myPlace = new LatLng(location.getLatitude(), location.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(myPlace).title("Number bus"));
+            myPlaceMarker = mMap.addMarker(new MarkerOptions().position(myPlace).title("Number bus"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(myPlace));
+            Toast.makeText(this, "JJIJKL", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -144,7 +158,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         LatLng irkutsk = new LatLng(52, 104);
-        mMap.addMarker(new MarkerOptions().position(irkutsk).title("Number bus"));
+        myPlaceMarker = mMap.addMarker(new MarkerOptions().position(irkutsk).title("Number bus"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(irkutsk));
     }
 
@@ -152,17 +166,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onResume() {
         super.onResume();
         if (granted || checkPermission()) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
             if (locationManager != null) {
-                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 if (location != null) {
                     myPlace = new LatLng(location.getLatitude(), location.getLongitude());
                 }
             }
         }
         if (myPlace != null) {
-            mMap.addMarker(new MarkerOptions().position(myPlace).title("Number bus"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(myPlace));
+//            mMap.addMarker(new MarkerOptions().position(myPlace).title("Number bus"));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLng(myPlace));
         }
     }
 
