@@ -96,18 +96,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         public void onProviderEnabled(String s) {
             if (granted || checkPermission())
                 showLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-            Toast.makeText(MapsActivity.this, "Местоположение не определено", Toast.LENGTH_LONG).show();
+            Toast.makeText(MapsActivity.this, "Что-то работает", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onProviderDisabled(String s) {
-            Toast.makeText(MapsActivity.this, "Местоположение не определено", Toast.LENGTH_LONG).show();
+            Toast.makeText(MapsActivity.this, "Что-то не работает", Toast.LENGTH_LONG).show();
         }
     };
 
     private void showLocation(Location location) {
         if (location == null)
             return;
+        Toast.makeText(this, "Локации нет", Toast.LENGTH_SHORT).show();
         if (location.getProvider().equals(LocationManager.GPS_PROVIDER)) {
             this.location = location;
             //показать!!!
@@ -159,8 +160,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }
-
-        // Add a marker in Sydney and move the camera
         if (myPlace != null) {
             mMap.addMarker(new MarkerOptions().position(myPlace).title("Number bus"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(myPlace));
