@@ -2,41 +2,45 @@ package com.example.test;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class Enter extends Fragment {
+
+public class Enter extends AppCompatActivity {
     Button enter_bt;
     EditText login_ent, psw_ent;
-    StartActivity startActivity;
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_start,container);
-        return view;
-    }
+    TextView on_registration;
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.enter);
 
-        enter_bt = view.findViewById(R.id.enter_bt);
-        login_ent = view.findViewById(R.id.login_ent);
-        psw_ent = view.findViewById(R.id.psw_ent);
+        enter_bt = findViewById(R.id.enter_bt);
+        login_ent = findViewById(R.id.login_ent);
+        psw_ent = findViewById(R.id.psw_ent);
+        on_registration = findViewById(R.id.on_registration);
 
         enter_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), MapsActivity.class);
+                Intent intent = new Intent(Enter.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
-        super.onViewCreated(view, savedInstanceState);
+
+        on_registration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Enter.this, Registration.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
